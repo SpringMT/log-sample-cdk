@@ -26,10 +26,15 @@ https://github.com/aws/aws-for-fluent-bit
 
 ### awsfirelensを指定した場合
 sidecarを追加するCDKの実装
-https://github.com/aws/aws-cdk/blob/a04c017323130cb6f88a530e192e9e0e86fb137a/packages/%40aws-cdk/aws-ecs/lib/base/task-definition.ts#L662-L671
+* https://github.com/aws/aws-cdk/blob/a04c017323130cb6f88a530e192e9e0e86fb137a/packages/%40aws-cdk/aws-ecs/lib/base/task-definition.ts#L662-L671
 
 パーミッションとかもよしなにやってくれるのか？
-https://github.com/aws/aws-cdk/blob/7966f8d48c4bff26beb22856d289f9d0c7e7081d/packages/%40aws-cdk/aws-ecs/lib/firelens-log-router.ts#L151-L177
+* https://github.com/aws/aws-cdk/blob/7966f8d48c4bff26beb22856d289f9d0c7e7081d/packages/%40aws-cdk/aws-ecs/lib/firelens-log-router.ts#L151-L177
+
+awsfirelensを指定したときのecs-agent
+https://github.com/aws/amazon-ecs-agent/blob/225bc3a556bd2d1759ab27b23f54e7e68086c9f0/agent/taskresource/firelens/firelens_unix.go#L470
+
+https://github.com/awslabs/go-config-generator-for-fluentd-and-fluentbit これ使っている
 
 ## 参考
 * https://dev.classmethod.jp/articles/ecs-deploy-using-cdk/
