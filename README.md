@@ -14,10 +14,10 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
  * `cdk synth`       emits the synthesized CloudFormation template
 
 ## ハマったこと
-* CloudWatchとFirehoseの権限不足
-* CDKでIPアドレスがうまく解放されてなくてLimit
-* CloudWachのLogGroupがデフォルトretain
-* FargateはCPUとmemoryの組み合わせが決まっている
+* CloudWatchとFirehoseの権限不足でエラー
+* CDKでIPアドレスがうまく解放されてなくてLimitにかかる
+* CloudWachのLogGroupがデフォルトretainでdeploy -> destroy -> deployでエラー
+* FargateはCPUとmemoryの組み合わせが決まっているのを知らずにやるとエラー
 
 ## 参考
 * https://dev.classmethod.jp/articles/ecs-deploy-using-cdk/
