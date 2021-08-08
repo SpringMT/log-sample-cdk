@@ -22,3 +22,13 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 ## 参考
 * https://dev.classmethod.jp/articles/ecs-deploy-using-cdk/
 * https://docs.aws.amazon.com/cdk/latest/guide/about_examples.html
+
+### CloudWatch log のtail
+```
+aws logs tail --follow ロググループ名
+```
+
+### S3のファイルのcat
+```
+aws s3 cp s3://バケット名/ファイル名 -
+```
