@@ -1,13 +1,12 @@
-import * as cdk from "@aws-cdk/core"
-import * as ec2 from "@aws-cdk/aws-ec2"
-import { ApplicationLoadBalancedFargateService } from "@aws-cdk/aws-ecs-patterns"
+import * as cdk from '@aws-cdk/core'
+import * as ec2 from '@aws-cdk/aws-ec2'
+import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns'
 import * as iam from '@aws-cdk/aws-iam'
 import * as logs from '@aws-cdk/aws-logs'
-import * as ecs from "@aws-cdk/aws-ecs"
-import { ApplicationProtocol } from "@aws-cdk/aws-elasticloadbalancingv2"
-import { RemovalPolicy } from "@aws-cdk/core"
+import * as ecs from '@aws-cdk/aws-ecs'
+import { RemovalPolicy } from '@aws-cdk/core'
 
-export class LogSampleCdkStack extends cdk.Stack {
+export class FargateFirelensStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     // Create VPC
@@ -58,9 +57,12 @@ export class LogSampleCdkStack extends cdk.Stack {
       image: ecs.ContainerImage.fromRegistry("springmt/log-sample:v0.0.2"),
       cpu: 256,
       memoryLimitMiB: 256,
-      logging: ecs.LogDriver.awsLogs({
-        streamPrefix: 'log-sample',
-        logGroup,
+      logging: ecs.LogDrivers.firelens({
+        options: {
+          Name: 'firehose',
+          region: 'ap-northeast-1',
+          delivery_stream: 'log-sample',
+        }
       }),
     })
   

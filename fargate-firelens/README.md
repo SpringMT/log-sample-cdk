@@ -12,13 +12,3 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk synth`       emits the synthesized CloudFormation template
-
-## ハマったこと
-* CloudWatchとFirehoseの権限不足
-* CDKでIPアドレスがうまく解放されてなくてLimit
-* CloudWachのLogGroupがデフォルトretain
-* FargateはCPUとmemoryの組み合わせが決まっている
-
-## 参考
-* https://dev.classmethod.jp/articles/ecs-deploy-using-cdk/
-* https://docs.aws.amazon.com/cdk/latest/guide/about_examples.html
