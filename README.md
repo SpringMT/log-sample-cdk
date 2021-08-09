@@ -36,6 +36,10 @@ https://github.com/aws/amazon-ecs-agent/blob/225bc3a556bd2d1759ab27b23f54e7e6808
 
 https://github.com/awslabs/go-config-generator-for-fluentd-and-fluentbit これ使っている
 
+## fluent-bit
+macでコケたら
+https://github.com/fluent/fluent-bit/issues/1528
+
 ## 参考
 * https://dev.classmethod.jp/articles/ecs-deploy-using-cdk/
 * https://docs.aws.amazon.com/cdk/latest/guide/about_examples.html
