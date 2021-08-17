@@ -4,6 +4,9 @@ import { ApplicationLoadBalancedFargateService } from '@aws-cdk/aws-ecs-patterns
 import * as iam from '@aws-cdk/aws-iam'
 import * as logs from '@aws-cdk/aws-logs'
 import * as ecs from '@aws-cdk/aws-ecs'
+import * as destinations from '@aws-cdk/aws-kinesisfirehose-destinations'
+import * as s3 from '@aws-cdk/aws-s3'
+import * as firehoses from '@aws-cdk/aws-kinesisfirehose'
 import { RemovalPolicy } from '@aws-cdk/core'
 
 export class FargateFirelensStack extends cdk.Stack {
@@ -11,6 +14,13 @@ export class FargateFirelensStack extends cdk.Stack {
     super(scope, id, props);
     // Create VPC
     const vpc = new ec2.Vpc(this, 'log-sample-vpc', { maxAzs: 2});
+
+    // kinesis firehose
+    // これだと5分間バッファリングする
+    const bucket = new s3.Bucket(this, 'Bucket');
+    const firehose = new firehoses.DeliveryStream(this, 'Delivery Stream', {
+      destinations: [new destinations.S3Bucket(bucket)],
+    })
 
     // Create ECS Cluster
     const cluster = new ecs.Cluster(this, 'log-sample-ecs', {
@@ -61,7 +71,7 @@ export class FargateFirelensStack extends cdk.Stack {
         options: {
           Name: 'firehose',
           region: 'ap-northeast-1',
-          delivery_stream: 'log-sample',
+          delivery_stream: firehose.deliveryStreamName,
         }
       }),
     })
